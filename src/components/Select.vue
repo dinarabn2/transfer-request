@@ -19,14 +19,14 @@ onMounted(()=> getHouses())
 </script>
 
 <template>
-    <div class="select__wrapper">
+    <section class="select__wrapper">
         <select v-model="store.request.sender_id">
             <option disabled selected value="">Введите или выберите склад</option>
             <option v-for="warehouse in warehouses" :key="warehouse.id" :value="warehouse.id">
                 {{ warehouse.name }}
             </option>
         </select>
-    </div>
+    </section>
 </template>
 
 <style lang="scss" scoped>

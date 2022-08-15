@@ -1,5 +1,9 @@
+<script setup>
+import ProductTable from './ProductTable.vue'
+</script>
+
 <template>
-    <div class="border">
+    <section class="border">
         <div class="table">
             <p>№</p>
             <p>Название</p>
@@ -7,12 +11,8 @@
             <p>Количество</p>
         </div>
         <ProductTable />
-    </div>
+    </section>
 </template>
-
-<script setup>
-import ProductTable from './ProductTable.vue'
-</script>
 
 <style lang="scss" scoped>
 .table {

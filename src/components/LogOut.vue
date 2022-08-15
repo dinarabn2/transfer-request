@@ -1,13 +1,13 @@
+<script setup>
+import router from './../router/index'
+</script>
+
 <template>
     <div>
         <h4>Выход</h4>
         <img src="./../assets/logout.svg" alt="logout" @click="router.push({path: '/login'})">
     </div>
 </template>
-
-<script setup>
-import router from './../router/index'
-</script>
 
 <style lang="scss" scoped>
 $blue-color: #029AAD;

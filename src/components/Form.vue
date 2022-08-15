@@ -1,20 +1,3 @@
-<template>
-    <div class="form">
-        <div class="login">
-            <img class="user" src="./../assets/user.svg" alt="user">
-            <input type="text" placeholder="Логин"   v-model="username" >
-        </div>
-        <div class="password">
-            <img class="lock" src="./../assets/lock.svg" alt="password">
-            <input type="password" placeholder="Пароль"  v-model="password" >
-            <img src="./../assets/Eye.svg" alt="eye" class="eye"/>
-        </div>
-        <input id ="remember" type="checkbox" name="check">
-        <span>Запомнить</span>
-        <button @click="signIn">Вход</button>
-    </div>
-</template>
-
 <script setup>
 import {ref} from 'vue';
 import router from './../router/index';
@@ -29,6 +12,24 @@ const signIn = () => {
 }
 
 </script>
+
+<template>
+    <section class="form">
+        <div class="login">
+            <img class="user" src="./../assets/user.svg" alt="user">
+            <input type="text" placeholder="Логин"   v-model="username" >
+        </div>
+        <div class="password">
+            <img class="lock" src="./../assets/lock.svg" alt="password">
+            <input type="password" placeholder="Пароль"  v-model="password" >
+            <img src="./../assets/Eye.svg" alt="eye" class="eye"/>
+        </div>
+        <input id ="remember" type="checkbox" name="check">
+        <span>Запомнить</span>
+        <button @click="signIn">Вход</button>
+    </section>
+</template>
+
 
 <style scoped>
 .login {

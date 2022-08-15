@@ -1,5 +1,12 @@
+<script setup>
+defineProps({
+  text: String
+})
+
+</script>
+
 <template>
-    <button>Создать перемещение</button>
+    <button>{{text}}</button>
 </template>
 
 <style lang="scss" scoped>

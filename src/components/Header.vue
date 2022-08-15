@@ -1,3 +1,7 @@
+<script setup>
+import router from './../router/index'
+</script>
+
 <template>
     <header class="header">
         <div class="header__wrapper">
@@ -19,10 +23,6 @@
         </div>
     </header>
 </template>
-
-<script setup>
-import router from './../router/index'
-</script>
 
 <style lang="scss" scoped>
 @mixin ml30 {

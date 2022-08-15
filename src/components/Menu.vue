@@ -1,3 +1,8 @@
+<script setup>
+    import MenuList from './MenuList.vue'
+    import LogOut from './LogOut.vue'
+</script>
+
 <template>
     <nav class="menu">
         <img src="./../assets/menu-logo.svg" alt="menu-logo">
@@ -5,11 +10,6 @@
         <LogOut />
     </nav>
 </template>
-
-<script setup>
-    import MenuList from './MenuList.vue'
-    import LogOut from './LogOut.vue'
-</script>
 
 <style lang="scss" scoped>
 .menu {
