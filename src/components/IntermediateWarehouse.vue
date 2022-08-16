@@ -1,47 +1,29 @@
 <script setup>
-import { onMounted, reactive, ref } from "vue";
-import { useStore } from "../store/store";
+import { useStore } from "./../store/store";
+import { storeWarehouse } from "./../store/warehouse";
 
-const props = defineProps({
+const store = useStore();
+const warehouseStore = storeWarehouse();
+defineProps({
   show: Boolean,
 });
 
-const store = useStore();
-let warehouses = ref([]);
-let warehouse = reactive({});
-
-async function getHouses() {
-  const res = await fetch(
-    "http://10.10.1.74:80/api/v1/handbook/warehouses/list",
-    {
-      headers: store.headers,
-    }
-  );
-
-  const data = await res.json();
-  warehouses.value = await data;
-}
-
-onMounted(() => getHouses());
+const filterOption = (input, option) => {
+  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+};
 </script>
 
 <template>
   <section v-if="show">
     <h4>Промежуточный склад:</h4>
-    <div class="select__wrapper">
-      <select v-model="store.request.transit_id">
-        <option disabled selected value="">
-          Выберите промежуточный склад...
-        </option>
-        <option
-          v-for="warehouse in warehouses"
-          :key="warehouse.id"
-          :value="warehouse.id"
-        >
-          {{ warehouse.name }}
-        </option>
-      </select>
-    </div>
+    <a-select
+      v-model:value="store.request.transit_id"
+      show-search
+      placeholder="Введите или выберите склад"
+      style="width: 695px"
+      :options="warehouseStore.options"
+      :filter-option="filterOption"
+    ></a-select>
   </section>
 </template>
 

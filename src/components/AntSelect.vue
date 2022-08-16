@@ -3,48 +3,23 @@
     v-model:value="store.request.sender_id"
     show-search
     placeholder="Введите или выберите склад"
-    :options="options"
+    style="width: 695px"
+    :options="warehouseStore.options"
     :filter-option="filterOption"
   ></a-select>
 </template>
+
 <script setup>
-import { onMounted, ref } from "vue";
 import { useStore } from "./../store/store";
+import { storeWarehouse } from "./../store/warehouse";
 
 const store = useStore();
-let warehouses = ref([]);
-
-let options = ref([
-  {
-    value: "",
-    label: "",
-  },
-]);
-
-async function getHouses() {
-  const res = await fetch(
-    "http://10.10.1.74:80/api/v1/handbook/warehouses/list",
-    {
-      headers: store.headers,
-    }
-  );
-
-  const data = await res.json();
-  warehouses.value = await data;
-
-  for (let obj of warehouses.value) {
-    options.value.push({ value: obj.id, label: obj.name });
-  }
-}
-
-onMounted(() => {
-  getHouses();
-});
-
+const warehouseStore = storeWarehouse();
 const filterOption = (input, option) => {
   return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
 </script>
+
 
 <style>
 .ant-select-selector {

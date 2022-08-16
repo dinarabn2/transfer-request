@@ -1,5 +1,4 @@
 <script setup>
-import Select from "./Select.vue";
 import ButtonProduct from "./ButtonProduct.vue";
 import Table from "./Table.vue";
 import IntermediateWarehouse from "./IntermediateWarehouse.vue";
@@ -18,7 +17,6 @@ const showSelect = ref(false);
       <h4>Куда:</h4>
       <div class="content__wrapper-item">
         <AntSelect />
-        <!-- <Select /> -->
       </div>
       <div class="content__wrapper-item">
         <SelectSecond />
@@ -27,7 +25,8 @@ const showSelect = ref(false);
     <input
       @click="showSelect = showSelect === true ? false : true"
       type="checkbox"
-    /><label>Отправить через РЦ</label>
+      id="select"
+    /><label for="select">Отправить через РЦ</label>
     <IntermediateWarehouse :show="showSelect" />
     <ButtonProduct />
     <Table />
@@ -65,6 +64,7 @@ const showSelect = ref(false);
   label {
     @include font(400, 15px, 17px, #001529);
     margin-left: 8px;
+    cursor: pointer;
   }
   &__wrapper {
     @include mt30;

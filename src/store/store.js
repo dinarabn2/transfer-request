@@ -10,7 +10,6 @@ export const useStore = defineStore('main', () => {
 
     let request = reactive(
         {
-            transit_id: '',
             products: [
                 {
                     product_id: '',

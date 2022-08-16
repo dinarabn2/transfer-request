@@ -22,10 +22,14 @@ function deleteTable(event, product) {
     <p class="select__wrapper">
       <select>
         <option value="">Новый (5 шт.)</option>
+        <option value="">Брак (5 шт.)</option>
+        <option value="">Дефект (5 шт.)</option>
+        <option value="">ПослеРемонта (5 шт.)</option>
+        <option value="">Распакован (5 шт.)</option>
       </select>
     </p>
     <p>
-      <input type="text" />
+      <input type="number" value="1" />
     </p>
     <p>
       <img

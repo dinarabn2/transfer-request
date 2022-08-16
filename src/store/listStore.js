@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useStore } from './store';
 
 export const listStore = defineStore('list', () => {
@@ -8,11 +8,29 @@ export const listStore = defineStore('list', () => {
     let checkedProductInTree = ref([]);
     let collectID = ref([]);
     let passId = ref([]);
+    let treeData = ref([]);
+    let search = ref('');
+    let checkboxChecked = ref([]);
+
+    async function getProduct() {
+        const res = await fetch("http://10.10.1.74:80/api/v1/catalog/categories", {
+            headers: store.headers,
+        });
+
+        const data = await res.json();
+        treeData.value = await data;
+    }
+
+
+    onMounted(() => {
+        getProduct();
+    });
+
 
     async function getList() {
         const list = checkedProductInTree._rawValue.join(',');
-        if (list) {
-            const res = await fetch(`http://10.10.1.74:80/api/v1/catalog/search/categories-product?categories=${list}`, {
+        if ((search.value.length > 2 && list) || list || search.value.length > 2) {
+            const res = await fetch(`http://10.10.1.74:80/api/v1/catalog/search/categories-product?categories=${list}&search=${search.value.length > 2 ? search.value : ''}`, {
                 headers: store.headers
             });
 
@@ -34,6 +52,6 @@ export const listStore = defineStore('list', () => {
     }
 
     return {
-        checkedProductInTree, getList, products, reset, collectID, passId
+        checkedProductInTree, getList, products, reset, collectID, passId, treeData, search, checkboxChecked
     }
 })

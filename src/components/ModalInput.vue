@@ -1,14 +1,16 @@
 <script setup>
-import { ref } from "vue";
-import { useStore } from "../store/store";
 import { listStore } from "../store/listStore";
 
-const store = useStore();
 const storeList = listStore();
 </script>
 
 <template>
-  <input type="text" placeholder="Введите товар..." />
+  <input
+    type="text"
+    placeholder="Введите товар..."
+    v-model="storeList.search"
+    @input="storeList.getList"
+  />
 </template>
 
 <style lang="scss" scoped>

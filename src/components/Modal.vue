@@ -21,7 +21,6 @@ function closeBtn() {
 function postData() {
   if (storeList.collectID) {
     store.modal = false;
-    storeList.reset();
     storeList.passId = storeList.collectID;
   } else {
     store.modal = true;
@@ -30,14 +29,17 @@ function postData() {
 </script>
 
 <template>
-  <section v-if="store.modal" class="overlay">
+  <section
+    v-if="store.modal"
+    class="overlay"
+    @click.self="store.modal = !store.modal"
+  >
     <div class="modal">
       <button class="modal__close" @click="closeBtn()">
         <img src="./../assets/close.svg" alt="close" />
         <p>Закрыть</p>
       </button>
       <ModalInput />
-      <!-- <ModalContent /> -->
       <div class="modal__list">
         <Tree />
         <PoductListInModal />

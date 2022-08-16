@@ -5,6 +5,7 @@ const store = listStore();
 
 function changeCheckbox(event, id) {
   if (event.target.checked) {
+    event.target.parentElement.classList.toggle("blue");
     store.collectID.push(id);
   } else {
     store.collectID = store.collectID.filter((item) => item !== id);
@@ -16,7 +17,12 @@ function changeCheckbox(event, id) {
   <section v-if="store.products">
     <div class="border">
       <p v-for="list in store.products" :key="list.id">
-        <input type="checkbox" @change="changeCheckbox($event, list)" />
+        <input
+          type="checkbox"
+          @change="changeCheckbox($event, list)"
+          :value="list.id"
+          v-model="store.checkboxChecked"
+        />
         <span>{{ list.attributes.full_name }}</span>
       </p>
     </div>
@@ -32,7 +38,6 @@ span {
   font-weight: 400;
   font-size: 17px;
   line-height: 20px;
-  color: #001529;
   margin-left: 15px;
   margin-bottom: 20px;
 }
@@ -42,5 +47,8 @@ input {
 .border {
   border-left: 1px solid #029aad;
   padding-left: 50px;
+}
+.blue {
+  color: #029aad;
 }
 </style>
