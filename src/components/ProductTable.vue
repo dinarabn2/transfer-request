@@ -7,6 +7,9 @@ function deleteTable(event, product) {
   console.log(event.target);
   if (event.target) {
     store.passId = store.passId.filter((item) => item !== product);
+    store.checkboxChecked = store.checkboxChecked.filter(
+      (item) => item !== product.id
+    );
   }
 }
 </script>

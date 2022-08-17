@@ -9,6 +9,7 @@ function changeCheckbox(event, id) {
     store.collectID.push(id);
   } else {
     store.collectID = store.collectID.filter((item) => item !== id);
+    event.target.parentElement.classList.remove("blue");
   }
 }
 </script>
